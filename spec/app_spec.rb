@@ -6,10 +6,14 @@ require_relative '../lib/app'
 RSpec.describe App do
   include Rack::Test::Methods
 
-  let(:address) { "0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c" }
+  let(:address) { "0x8eeec35015baba2890e714e052dfbe73f4b752f9" }
 
   def app
     described_class
+  end
+
+  before(:each) do # reset DB every time
+    described_class::APP_DB.instance_variable_get(:@sqlite)[:accounts].truncate
   end
 
   it "says hello" do
@@ -30,7 +34,7 @@ RSpec.describe App do
     end
 
     expect(last_response).to be_created
-    expect(last_response.body).to eq("{\"account_address\":\"0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c\",\"balance_wei\":0}")
+    expect(JSON.parse(last_response.body)).to eq({"account_address" => "0x8eeec35015baba2890e714e052dfbe73f4b752f9", "balance_wei" => 1200000000000000000})
   end
 
   it 'posts a new account then lists it' do
@@ -41,6 +45,6 @@ RSpec.describe App do
     get '/accounts'
 
     expect(last_response).to be_ok
-    expect(JSON.parse(last_response.body)).to eq({"accounts" => [{"id"=>1, "account_address"=>"0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c", "balance_wei"=>0, "balance_ethers"=>0.0}, {"id"=>2, "account_address"=>"0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c", "balance_wei"=>0, "balance_ethers"=>0.0}]})
+    expect(JSON.parse(last_response.body)).to eq({"accounts" => [{"id"=>2, "account_address"=>"0x8eeec35015baba2890e714e052dfbe73f4b752f9", "balance_wei"=>1200000000000000000, "balance_ethers"=>1.2}]})
   end
 end
