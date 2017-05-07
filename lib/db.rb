@@ -7,11 +7,14 @@ class DB
   def initialize
     @sqlite = Sequel.sqlite # in-memory database
     create_tables
-    populate_data
   end
 
   def accounts
-    @sqlite[:accounts].to_a
+    accounts = @sqlite[:accounts].to_a
+    accounts.each do |account|
+      account[:balance_ethers] = wei_to_ether(account[:balance_wei])
+    end
+    accounts
   end
 
   def create_account(address, balance)
@@ -30,7 +33,8 @@ class DB
     end
   end
 
-  def populate_data
-    # pass
+  WEI_IN_ETHER = 1000000000000000000
+  def wei_to_ether(wei)
+    wei.to_f / WEI_IN_ETHER
   end
 end
