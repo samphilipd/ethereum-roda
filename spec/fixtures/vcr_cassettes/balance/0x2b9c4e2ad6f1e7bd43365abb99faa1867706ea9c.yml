@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://etherchain.org/api/account/0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 07 May 2017 14:26:05 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d091d3c4ad1b9d168fb8e57a9a598978a1494167150; expires=Mon, 07-May-18
+        14:25:50 GMT; path=/; domain=.etherchain.org; HttpOnly
+      X-Powered-By:
+      - Express
+      Access-Control-Allow-Origin:
+      - "*"
+      Etag:
+      - W/"b5-4f359b77"
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 35b4d9d1bc7b6b97-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":1,"data":[{"address":"0x2b9c4e2ad6f1e7bd43365abb99faa1867706ea9c","balance":0,"nonce":null,"code":"0x","name":null,"storage":null,"firstSeen":"2016-10-09T19:26:00.000Z"}]}'
+    http_version: 
+  recorded_at: Sun, 07 May 2017 14:26:04 GMT
+recorded_with: VCR 3.0.3
