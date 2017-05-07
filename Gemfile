@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'roda'
 gem 'pry'
+gem 'roda'
 gem 'sequel'
 
 group :test do
-  gem 'rspec'
   gem "rack-test", require: "rack/test"
+  gem 'rspec'
 end
